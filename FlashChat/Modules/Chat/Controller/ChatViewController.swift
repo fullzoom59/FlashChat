@@ -46,8 +46,10 @@ class ChatViewController: UIViewController {
     private func loadMessagesFromFirestore() {
         chatModel.loadMessagesFromFirestore {
             self.chatTableView.reloadData()
-            let indexPath = IndexPath(row: self.chatModel.messages.count - 1, section: 0)
-            self.chatTableView.scrollToRow(at: indexPath, at: .top, animated: false)
+            if !self.chatModel.messages.isEmpty {
+                let indexPath = IndexPath(row: self.chatModel.messages.count - 1, section: 0)
+                self.chatTableView.scrollToRow(at: indexPath, at: .top, animated: false)
+            }
         }
     }
 
